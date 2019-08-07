@@ -4,9 +4,9 @@
 
 ## Assignment 1 - Personal
 
-### Counter Strike movement mechanics
+## Counter Strike movement mechanics
 
-# Mechanic demonstration link:
+### Mechanic demonstration link:
 
 https://youtu.be/gyd0YOnjjc4
 
@@ -28,7 +28,7 @@ though the player must also not be moving left and right which is also
 shown.
 
 
-# Technology description:
+## Technology description:
 
 The technology I am covering in this assignment is the demonstration of one of
 the movement mechanic's used in Counter Strike GO. The movement mechanic I am 
@@ -70,5 +70,8 @@ movement mechanic I have demonstrate, it is similar in the sense they are
 inegrating complex player inputs into a basic core player movement - 
 in turn increasing the skill cap of the game.
 
-Sources:
+## Sources:
+
 https://www.youtube.com/watch?v=AGcgQEzCCrI
+
+
