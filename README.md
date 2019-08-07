@@ -6,10 +6,29 @@
 
 ### Counter Strike movement mechanics
 
-Prototype link:
-"insert utube link here"
+#Mechanic demonstration link:
 
-Technology description:
+https://youtu.be/gyd0YOnjjc4
+
+No aduio - Text explanation - read technology description first:
+
+first moving with counter strafing - counter act momentum by moving in 
+oppisite direction.
+
+second moving without counter strafing - letting character slide
+
+mix of both moving with control and without
+
+when spamming between moving left and right to show 0 point in movement that
+is recognised by the mechanic
+
+towards the end I start flipping the gravity to show at the tips of the 
+transition in gravity there is a point where the player has 0 velocity still 
+though the player must also not be moving left and right which is also
+shown.
+
+
+#Technology description:
 
 The technology I am covering in this assignment is the demonstration of one of
 the movement mechanic's used in Counter Strike GO. The movement mechanic I am 
