@@ -6,4 +6,5 @@
 
 ### Counter Strike movement mechanics
 
-Technology description: 
+Technology description:
+
