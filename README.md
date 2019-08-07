@@ -8,3 +8,4 @@
 
 Technology description:
 
+The technology I am covering in this assignment is demonstration of the movement mechanic used in the counter strick
