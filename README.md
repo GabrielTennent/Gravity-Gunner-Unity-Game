@@ -83,4 +83,7 @@ covering work in CS Go.
 
 https://www.youtube.com/watch?v=AGcgQEzCCrI
 
+My understanding of this mechanic is from 800+ hours on Counter Strike trying to
+master the mechanic :D
+
 
