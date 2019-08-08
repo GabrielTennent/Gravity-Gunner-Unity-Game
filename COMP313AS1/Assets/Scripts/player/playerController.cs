@@ -11,19 +11,18 @@ public class playerController : MonoBehaviour
     private float rightVelocity; //stores current right velocity of the player
     private float leftVelocity; //stores current left velocity of the player
 
-    [SerializeField] private Transform groundCheck; //a position marking where the players feet are
-
-    private BoxCollider2D topCollider; //box collider repsenting the top half of the player collision;
-    private CircleCollider2D bottomCollider; //circle collider presenting the bottom half of the player;
     private Rigidbody2D body; //represents rigid body compenent on player
 
     private SpriteRenderer rend; //renderer - lets you access renderer compenent for the player in the script
     private bool horizontalFlip; //bool - keeps track of whether the player has changed from initial direction or not
-    private bool gravityFlip; //bool - keeps track of what direction the gravity is effecting the player
     private const float speedDirChange = 0.25f;
 
     private float horizontal; //float - each update holds the input of the player for horizontal movement
 
+
+    //Shooting fields
+    public Transform firePoint;
+    public GameObject bullet;
 
     // Start is called before the first frame update
     void Start()
@@ -34,7 +33,6 @@ public class playerController : MonoBehaviour
 
         //Computing gravity switches
         this.horizontalFlip = false;
-        this.gravityFlip = false;
 
         //Computing player inputs and horizontal movement
         this.horizontal = Input.GetAxisRaw("Horizontal");
@@ -74,7 +72,7 @@ public class playerController : MonoBehaviour
 
                     if (horizontalFlip && rightVelocity > speedDirChange) //applys appropriate rendering to character
                     {
-                        this.rend.flipX = false;
+                        transform.Rotate(0, 180, 0);
                         horizontalFlip = false;
                     }
                 }
@@ -95,7 +93,7 @@ public class playerController : MonoBehaviour
 
                     if (!horizontalFlip && leftVelocity > speedDirChange) //applys appropriate rendering to character
                     {
-                        this.rend.flipX = true;
+                        transform.Rotate(0, 180, 0);
                         horizontalFlip = true;
                     }
                 }
@@ -123,20 +121,9 @@ public class playerController : MonoBehaviour
         //Vertical Gravity movement
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
-            if (gravityFlip) gravityFlip = false;
-            else gravityFlip = true;
             body.gravityScale *= -1;
+            transform.Rotate(0, 0, 180);
         }
-
-        //Gravity rendering changes on sprite renderer
-        if (gravityFlip)
-        { 
-            this.rend.flipY = true;
-        } else 
-        {
-            this.rend.flipY = false;
-        }
-
 
     }
 
@@ -146,10 +133,16 @@ public class playerController : MonoBehaviour
             && IsApprox(body.velocity.x, 0, 0.1f))
         {
             rend.material.SetColor("_Color", Color.green);
+            if (Input.GetButtonDown("Fire1")) Shoot();
         } else
         {
             rend.material.SetColor("_Color", Color.red);
         }
+    }
+
+    void Shoot()
+    {
+        Instantiate(bullet, firePoint.position, firePoint.rotation);
     }
 
     bool IsApprox(float a, float b, float tolerence)
