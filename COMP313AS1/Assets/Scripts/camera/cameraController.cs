@@ -11,13 +11,13 @@ public class cameraController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        this.player = GameObject.Find("player"); //Returns game object named Player
-        this.offSet = transform.position - player.transform.position; //Finds different for offset variable
+        //this.player = GameObject.Find("player"); //Returns game object named Player
+        //this.offSet = transform.position - player.transform.position; //Finds different for offset variable
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.position = player.transform.position + offSet; //Accounts for difference in positions keeping the camera locked
+        //transform.position = player.transform.position + offSet; //Accounts for difference in positions keeping the camera locked
     }
 }

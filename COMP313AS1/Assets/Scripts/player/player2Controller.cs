@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class playerController : MonoBehaviour
+public class player2Controller : MonoBehaviour
 {
     //movement fields
     [SerializeField] private float maxPlayerSpeed = 50.0f; //Float - player speed
     [SerializeField] private float timeToMaxSpeed = 2f; //float - time taken for player to reach max speed
-    private float accelRatePerSec; //stores maxPlayerSpeed/timeToMaxSpeed - so that you know how much to accelerate each second
+	[SerializeField] public float health = 3f;
+
+	private float accelRatePerSec; //stores maxPlayerSpeed/timeToMaxSpeed - so that you know how much to accelerate each second
     private float rightVelocity; //stores current right velocity of the player
     private float leftVelocity; //stores current left velocity of the player
 
@@ -35,7 +37,7 @@ public class playerController : MonoBehaviour
         this.horizontalFlip = false;
 
         //Computing player inputs and horizontal movement
-        this.horizontal = Input.GetAxisRaw("Horizontal");
+        this.horizontal = Input.GetAxisRaw("HorizontalPlayer2");
         accelRatePerSec = maxPlayerSpeed / timeToMaxSpeed;
     }
 
@@ -43,7 +45,7 @@ public class playerController : MonoBehaviour
     void Update()
     {
         //Computing player inputs and horizontal movement
-        this.horizontal = Input.GetAxisRaw("Horizontal");
+        this.horizontal = Input.GetAxisRaw("HorizontalPlayer2");
     }
 
     private void FixedUpdate()
@@ -119,7 +121,7 @@ public class playerController : MonoBehaviour
         body.velocity = updatedVel;
 
         //Vertical Gravity movement
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+        if (Input.GetKeyDown(KeyCode.K))
         {
             body.gravityScale *= -1;
             transform.Rotate(0, 0, 180);
@@ -133,7 +135,7 @@ public class playerController : MonoBehaviour
             && IsApprox(body.velocity.x, 0, 0.1f))
         {
             rend.material.SetColor("_Color", Color.green);
-            if (Input.GetButtonDown("Fire1")) Shoot();
+            if (Input.GetKeyDown(KeyCode.L)) Shoot();
         } else
         {
             rend.material.SetColor("_Color", Color.red);
@@ -149,4 +151,15 @@ public class playerController : MonoBehaviour
     {
         return Mathf.Abs(a - b) < tolerence;
     }
+
+	public void takeDamage()
+	{
+		this.health -= 1;
+		checkHealth();
+	}
+
+	void checkHealth()
+	{
+		if (this.health == 0) Destroy(this.gameObject);
+	}
 }

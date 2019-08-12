@@ -15,6 +15,16 @@ public class Bullet : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
+        if (collision.gameObject.name == "player1")
+        {
+            player1Controller p1Cont = collision.gameObject.GetComponent<player1Controller>();
+            p1Cont.takeDamage();
+        }
+        if (collision.gameObject.name == "player2")
+        {
+            player2Controller p2Cont = collision.gameObject.GetComponent<player2Controller>();
+            p2Cont.takeDamage();
+        }
         Destroy(this.gameObject);
     }
 }
