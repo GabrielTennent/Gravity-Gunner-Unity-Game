@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class playerController : MonoBehaviour
 {
     //player fields
-	public float health = 3;
+    private playerHealth health;
     public float movementSpeed = 5;
     public float jumpForce = 1000;
 
@@ -35,7 +35,7 @@ public class playerController : MonoBehaviour
         //Initalizing fields for movement
         this.body = GetComponent<Rigidbody2D>();
         this.rend = GetComponent<SpriteRenderer>();
-        this.health = 3;
+        this.health = GetComponent<playerHealth>();
 
         //Computing gravity switches
         this.horizontalFlip = false;
@@ -104,7 +104,11 @@ public class playerController : MonoBehaviour
 
     void CheckShot()
     {
-        if (Input.GetKeyDown(shoot)) Shoot();
+        if (Input.GetKeyDown(shoot))
+        {
+            Debug.Log("shot");
+            Shoot();
+        }
     }
 
     void Shoot()
@@ -117,12 +121,11 @@ public class playerController : MonoBehaviour
 
     public void takeDamage()
 	{
-		health -= 1;
-        Debug.Log(health);
-        if (health == 0)
-        {
-            endGame();
-        }
+       health.takeDamage(1);
+       if (health.curHealth == 0)
+       {
+          endGame();
+       }
 	}
 
     void endGame()

@@ -27,11 +27,16 @@ public class Bullet : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.name == "player1" || collision.gameObject.name == "player2")
+        if (collision.gameObject.name == "player1")
+        {
+            playerController player = collision.gameObject.GetComponent<playerController>();
+            player.takeDamage();
+        } else if (collision.gameObject.name == "player2")
         {
             playerController player = collision.gameObject.GetComponent<playerController>();
             player.takeDamage();
         }
+
 
         if (collision.gameObject.name != "player1" && collision.gameObject.name != "player2" 
             && collision.gameObject.name != "Walls" && collision.gameObject.name != "Floor"

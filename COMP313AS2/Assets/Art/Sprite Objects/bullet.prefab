@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 1837208749775355482}
   - component: {fileID: 1236903451888873262}
   - component: {fileID: 2202644337756679104}
-  - component: {fileID: 456819383415561611}
   m_Layer: 0
   m_Name: bullet
   m_TagString: Untagged
@@ -145,31 +144,4 @@ MonoBehaviour:
   speed: 20
   rigid: {fileID: 1837208749775355482}
   bounce: 10
-  bulletDestruction: {fileID: 0}
-  bulletLife: 5
---- !u!61 &456819383415561611
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1977997646022056900}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -1.0154303, y: -0.5900703}
-  m_SpriteTilingProperty:
-    border: {x: 0.87, y: 0.25, z: 2.8899999, w: 2.8899999}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 7.28, y: 7.24}
-    newSize: {x: 7.28, y: 7.24}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 3.9649951, y: 3.0742707}
-  m_EdgeRadius: 0
+  shooter: {fileID: 0}
