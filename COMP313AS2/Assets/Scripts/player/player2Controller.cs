@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class player2Controller : MonoBehaviour
 {
@@ -19,7 +20,7 @@ public class player2Controller : MonoBehaviour
     private bool horizontalFlip; //bool - keeps track of whether the player has changed from initial direction or not
     private const float speedDirChange = 0.25f;
 
-    private float horizontal; //float - each update holds the input of the player for horizontal movement
+    public float horizontal; //float - each update holds the input of the player for horizontal movement
 
 
     //Shooting fields
@@ -29,6 +30,8 @@ public class player2Controller : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        this.health = 3;
+
         //Initalizing fields for movement
         this.body = GetComponent<Rigidbody2D>();
         this.rend = GetComponent<SpriteRenderer>();
@@ -37,15 +40,27 @@ public class player2Controller : MonoBehaviour
         this.horizontalFlip = false;
 
         //Computing player inputs and horizontal movement
-        this.horizontal = Input.GetAxisRaw("HorizontalPlayer2");
+        setHorizontalAxis();
+        this.horizontal = Input.GetAxisRaw("");
         accelRatePerSec = maxPlayerSpeed / timeToMaxSpeed;
+
+
+    }
+
+    void setHorizontalAxis()
+    {
+        if (this.gameObject.name == "player1")
+            this.horizontal = this.horizontal = Input.GetAxisRaw("HorizontalPlayer1");
+        if (this.gameObject.name == "player2")
+            Debug.Log("true");
+            this.horizontal = this.horizontal = Input.GetAxisRaw("HorizontalPlayer2"); 
     }
 
     // Update is called once per frame
     void Update()
     {
         //Computing player inputs and horizontal movement
-        this.horizontal = Input.GetAxisRaw("HorizontalPlayer2");
+        setHorizontalAxis();
     }
 
     private void FixedUpdate()
@@ -160,6 +175,10 @@ public class player2Controller : MonoBehaviour
 
 	void checkHealth()
 	{
-		if (this.health == 0) Destroy(this.gameObject);
-	}
+        if (this.health == 0)
+        {
+            Destroy(this.gameObject);
+            SceneManager.LoadScene(0);
+        }
+    }
 }
