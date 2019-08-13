@@ -141,7 +141,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acef9cde273ad439f9a599c75eda816b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 20
+  speed: 15
   rigid: {fileID: 1837208749775355482}
-  bounce: 10
   shooter: {fileID: 0}

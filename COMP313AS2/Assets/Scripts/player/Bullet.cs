@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    public float speed = 150f;
+    public float speed = 20f;
     public Rigidbody2D rigid;
-    public float bounce = 10000;
+    //public float bounce = 10000;
     public GameObject shooter;
 
     // Start is called before the first frame update
