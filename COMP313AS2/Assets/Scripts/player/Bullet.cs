@@ -44,6 +44,7 @@ public class Bullet : MonoBehaviour
         {
             Rigidbody2D body = collision.gameObject.GetComponent<Rigidbody2D>();
             SpriteRenderer meteorRend = collision.gameObject.GetComponent<SpriteRenderer>();
+            Meteor meteor = collision.gameObject.GetComponent<Meteor>();
             SpriteRenderer shooterRend = shooter.GetComponent<SpriteRenderer>();
 
             Vector2 positionDiff = body.transform.position - rigid.transform.position;
@@ -55,6 +56,19 @@ public class Bullet : MonoBehaviour
             } else
             {
                 body.velocity = new Vector2(rigid.velocity.x * positionDiff.normalized.x, rigid.velocity.x * positionDiff.normalized.y);
+            }
+
+
+            if(shooter.name == "player1")
+            {
+                meteor.p1Controlled = true;
+                meteor.p2Controlled = false;
+                meteor.neutral = false;
+            } else if(shooter.name == "player2")
+            {
+                meteor.p1Controlled = false;
+                meteor.p2Controlled = true;
+                meteor.neutral = false;
             }
 
             meteorRend.material.SetColor("_Color", shooterRend.color);

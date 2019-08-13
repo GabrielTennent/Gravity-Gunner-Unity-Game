@@ -25,9 +25,9 @@ public class Timer
     }
 
     // Update is called once per frame
-    void Update()
+    public void Update(float time)
     {
-        this.timeTracker += Time.deltaTime;
+        this.timeTracker += time;
     }
 
     public bool timeComplete()

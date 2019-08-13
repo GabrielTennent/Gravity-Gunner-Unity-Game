@@ -29,9 +29,20 @@ public class playerController : MonoBehaviour
     public Transform firePoint;
     public GameObject bullet;
 
+    //Reload times
+    public float maxAmmo = 3;
+    public float ammoAmount;
+    public Timer reloadTimer;
+    public float reloadTime = 2;
+    private bool reloading;
+
     // Start is called before the first frame update
     void Start()
     {
+        this.reloadTimer = new Timer(reloadTime);
+        this.reloading = false;
+        this.ammoAmount = maxAmmo;
+
         //Initalizing fields for movement
         this.body = GetComponent<Rigidbody2D>();
         this.rend = GetComponent<SpriteRenderer>();
@@ -45,7 +56,17 @@ public class playerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        CheckShot();
+        if (reloadTimer.timeComplete())
+        {
+            ammoAmount = maxAmmo;
+            reloadTimer.resetTimer();
+            reloading = false;
+        } else if (reloading)
+        {
+            reloadTimer.Update(Time.deltaTime);
+        }
+
+        if(!reloading) CheckShot();
     }
 
     private void FixedUpdate()
@@ -104,18 +125,19 @@ public class playerController : MonoBehaviour
 
     void CheckShot()
     {
-        if (Input.GetKeyDown(shoot))
+        if (ammoAmount > 0)
         {
-            Debug.Log("shot");
-            Shoot();
+            if (Input.GetKeyDown(shoot))
+            {
+                ammoAmount -= 1;
+                GameObject bulletRef;
+                bulletRef = Instantiate(bullet, firePoint.position, firePoint.rotation);
+                bulletRef.GetComponent<Bullet>().shooter = this.gameObject;
+            }
+        } else if (ammoAmount == 0)
+        {
+            this.reloading = true;
         }
-    }
-
-    void Shoot()
-    {
-        GameObject bulletRef;
-        bulletRef  = Instantiate(bullet, firePoint.position, firePoint.rotation);
-        bulletRef.GetComponent<Bullet>().shooter = this.gameObject;
     }
 
 
