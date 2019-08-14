@@ -24,6 +24,8 @@ public class playerController : MonoBehaviour
 
     private Rigidbody2D body; //represents rigid body compenent on player
     private SpriteRenderer rend; //renderer - lets you access renderer compenent for the player in the script
+    public Animator animator;
+    private Boolean takingDamage;
 
     //Shooting fields
     public Transform firePoint;
@@ -51,11 +53,14 @@ public class playerController : MonoBehaviour
         //Computing gravity switches
         this.horizontalFlip = false;
         this.gravityCheck = false;
+        animator.SetBool("takingDamage", false);
     }
 
     // Update is called once per frame
     void Update()
     {
+
+
         if (reloadTimer.timeComplete())
         {
             ammoAmount = maxAmmo;
@@ -71,6 +76,7 @@ public class playerController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        animator.SetBool("takingDamage", false);
         horizontalMovement();
         JumpMovement();
         GravityMovement();
@@ -143,7 +149,8 @@ public class playerController : MonoBehaviour
 
     public void takeDamage()
 	{
-       health.takeDamage(1);
+        animator.SetBool("takingDamage", true);
+        health.takeDamage(1);
        if (health.curHealth == 0)
        {
           endGame();
