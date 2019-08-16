@@ -31,7 +31,8 @@ The proccess of devoloping this game was long went through a lot of changes.
 Initially the idea was to have a 2D - player vs player - shooter in which the 
 player had to control their movement like you would in cs go and had to come to 
 a complete stop before they could shoot their weapon accuratly. After 
-implementing this (the movement is displayed in my AS1)
+implementing this (the movement is displayed in my AS1
+Link - https://www.youtube.com/watch?v=KLuZFbT_qAE)
 it became clear the game was to difficuilt and boring as the amount of skill
 required to shoot each other was unsatisfying and lead to long fights.
 
