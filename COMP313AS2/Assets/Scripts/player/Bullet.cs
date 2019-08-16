@@ -38,9 +38,10 @@ public class Bullet : MonoBehaviour
         }
 
 
-        if (collision.gameObject.name != "player1" && collision.gameObject.name != "player2" 
+        if (collision.gameObject.name != "player1" && collision.gameObject.name != "player2"
             && collision.gameObject.name != "Walls" && collision.gameObject.name != "Floor"
-            && collision.gameObject.name != "Roof")
+            && collision.gameObject.name != "Roof" && collision.gameObject.name != "player1bullet(Clone)"
+            && collision.gameObject.name != "player2bullet(Clone)") 
         {
             Rigidbody2D body = collision.gameObject.GetComponent<Rigidbody2D>();
             SpriteRenderer meteorRend = collision.gameObject.GetComponent<SpriteRenderer>();

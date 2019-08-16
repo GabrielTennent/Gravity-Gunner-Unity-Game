@@ -38,10 +38,25 @@ public class playerController : MonoBehaviour
     public float reloadTime = 2;
     private bool reloading;
 
+    //Main menu
+    public GameObject player1Win;
+    public GameObject player2Win;
+    private bool endingGame;
+    private Timer gameEndTimer;
+    private float gameEndTime = 2;
+
     // Start is called before the first frame update
     void Start()
     {
+        this.player1Win.SetActive(false);
+        this.player2Win.SetActive(false);
+
+        //Handling ending of the game
+        this.endingGame = false;
+        this.gameEndTimer = new Timer(gameEndTime);
         this.reloadTimer = new Timer(reloadTime);
+
+        //Reloading
         this.reloading = false;
         this.ammoAmount = maxAmmo;
 
@@ -59,8 +74,7 @@ public class playerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-
+        //Computing reloading
         if (reloadTimer.timeComplete())
         {
             ammoAmount = maxAmmo;
@@ -71,7 +85,17 @@ public class playerController : MonoBehaviour
             reloadTimer.Update(Time.deltaTime);
         }
 
+        //Checking for shooting if the player isnt reloading
         if(!reloading) CheckShot();
+
+        if (endingGame)
+        {
+            gameEndTimer.Update(Time.deltaTime);
+            if (gameEndTimer.timeComplete())
+            {
+                SceneManager.LoadScene(0);
+            }
+        }
     }
 
     private void FixedUpdate()
@@ -159,7 +183,17 @@ public class playerController : MonoBehaviour
 
     void endGame()
     {
-        SceneManager.LoadScene(0);
+        if(this.gameObject.name == "player1")
+        {
+            player2Win.SetActive(true);
+            this.endingGame = true;
+        }
+        if(this.gameObject.name == "player2")
+        {
+            player1Win.SetActive(true);
+            this.endingGame = true;
+        }
+
     }
 
     bool IsApprox(float a, float b, float tolerence)
